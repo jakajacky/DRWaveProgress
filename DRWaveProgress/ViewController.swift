@@ -10,16 +10,49 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  let wave = DRBezierWaveView(frame: CGRect(x: 100, y: 100, width: 375, height: 375))
+  var i = 0.0
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    
+//    let wave = DRBezierWaveView(frame: CGRect(x: 100, y: 100, width: 375, height: 375))
+//    wave.speed      = 2
+//    wave.waveHeight = 10.0
+//    wave.waveWidth  = 375.0
+    wave.progress   = 0.0
+//    wave.layer.cornerRadius = 375 / 2.0
+//    wave.layer.masksToBounds = true
+    wave.backgroundColor = UIColor.red
+    self.view.addSubview(wave)
+    
+    let timer = Timer(timeInterval: 5, target: self, selector: #selector(time), userInfo: nil, repeats: true)
+    let run = RunLoop.current
+    run.add(timer, forMode: RunLoopMode.commonModes)
+    timer.fire()
+    
+//    let link = CADisplayLink(target: self, selector: #selector(time))
+//    link.add(to: RunLoop.main, forMode: .commonModes)
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
+  func time() {
+    i += 0.2
+//    UIView.animate(withDuration: 1) {
+    
+//    }
+//    let anim = CABasicAnimation(keyPath: "position")
+//    anim.fromValue = wave.progress
+    self.wave.progress = CGFloat(self.i)
+    
+//    anim.toValue = wave.progress
+//    anim.duration = 1.0
+//    wave.layer.add(anim, forKey: "position")
+    
+  }
 
 }
 
