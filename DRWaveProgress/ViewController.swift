@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  let wave = DRBezierWaveView(frame: CGRect(x: 100, y: 100, width: 375, height: 375))
+  let wave = DRWaveBallProgressView(frame: CGRect(x: 90, y: 90, width: 250, height: 250))
   var i = 0.0
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,13 +19,21 @@ class ViewController: UIViewController {
 //    wave.speed      = 2
 //    wave.waveHeight = 10.0
 //    wave.waveWidth  = 375.0
-    wave.progress   = 0.0
+    
+    wave.progress = 0.0
 //    wave.layer.cornerRadius = 375 / 2.0
 //    wave.layer.masksToBounds = true
-    wave.backgroundColor = UIColor.red
+    wave.image = UIImage(named: "bg_ball")
+    wave.contentMode = .scaleToFill
+    wave.backgroundColor = UIColor.blue
+    
+    
+    wave.isUserInteractionEnabled = true
     self.view.addSubview(wave)
     
-    let timer = Timer(timeInterval: 5, target: self, selector: #selector(time), userInfo: nil, repeats: true)
+    
+    
+    let timer = Timer(timeInterval: 1, target: self, selector: #selector(time), userInfo: nil, repeats: true)
     let run = RunLoop.current
     run.add(timer, forMode: RunLoopMode.commonModes)
     timer.fire()
@@ -40,7 +48,7 @@ class ViewController: UIViewController {
   }
   
   func time() {
-    i += 0.2
+    i += 0.05
 //    UIView.animate(withDuration: 1) {
     
 //    }
