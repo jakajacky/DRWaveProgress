@@ -9,23 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+  
   let wave = DRWaveBallProgressView(frame: CGRect(x: 90, y: 90, width: 250, height: 250))
-  var i = 0.0
+  var i:Double = 0.0
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    let wave = DRBezierWaveView(frame: CGRect(x: 100, y: 100, width: 375, height: 375))
-//    wave.speed      = 2
-//    wave.waveHeight = 10.0
-//    wave.waveWidth  = 375.0
-    
     wave.progress = 0.0
-//    wave.layer.cornerRadius = 375 / 2.0
-//    wave.layer.masksToBounds = true
-    wave.image = UIImage(named: "bg_ball")
-    wave.contentMode = .scaleToFill
-    wave.backgroundColor = UIColor.blue
+    
+//    var te:CGFloat = 0.0
+//    te += 0.05
+//    if te == 1.05 {
+//      print("-----")
+//    }
     
     
     wave.isUserInteractionEnabled = true
@@ -49,17 +45,8 @@ class ViewController: UIViewController {
   
   func time() {
     i += 0.05
-//    UIView.animate(withDuration: 1) {
-    
-//    }
-//    let anim = CABasicAnimation(keyPath: "position")
-//    anim.fromValue = wave.progress
-    self.wave.progress = CGFloat(self.i)
-    
-//    anim.toValue = wave.progress
-//    anim.duration = 1.0
-//    wave.layer.add(anim, forKey: "position")
-    
+
+    self.wave.progress = Double(self.i)
   }
 
 }
