@@ -26,6 +26,7 @@ class DRBezierWaveView: UIView {
   var backg_    :CAShapeLayer!
   var bezierPath:UIBezierPath!
   
+  var link:CADisplayLink!
   override func draw(_ rect: CGRect) {
     width  = self.frame.size.width
     height = self.frame.size.height
@@ -54,7 +55,7 @@ class DRBezierWaveView: UIView {
     self.layer.addSublayer(backg_)
     
     // 定时
-    let link = CADisplayLink(target: self, selector: #selector(animation))
+    link = CADisplayLink(target: self, selector: #selector(animation))
     link.add(to: RunLoop.main, forMode: .commonModes)
   }
 
@@ -114,10 +115,15 @@ class DRBezierWaveView: UIView {
     backg_.add(anim1, forKey: "path")
 
     
-    backg_.fillColor = UIColor(red: 230 / 255.0, green: 65 / 255.0, blue: 46 / 255.0, alpha: 1).cgColor
+    backg_.fillColor = UIColor(red: 230 / 255.0, green: 65 / 255.0, blue: 66 / 255.0, alpha: 1).cgColor
     backg_.opacity   = 0.5
     backg_.path      = bezierPath.cgPath
 
+    if fabs(progress - 1.0) < 0.000001 { // 当到达顶峰 progress=1时，停止
+      link.invalidate()
+    }
   }
+  
+  
   
 }
